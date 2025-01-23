@@ -32,12 +32,22 @@ def _binary_search(mylist, key, left, right):
 	Returns:
 	  index of key in mylist, or -1 if not present.
 	"""
+	# Base case: key is not present
+	if left > right:
+		return -1
+	mid = (left + right) // 2
+	mid_val = mylist[mid]
+	if mid_val == key:
+		return mid
+		# Search in the left half
+	elif key < mid_val:
+		return _binary_search(mylist, key, left, mid - 1)
+	# Search in the right half
+	else:
+		return _binary_search(mylist, key, mid + 1, right)
 	### TODO
 
 	###
-
-
-
 
 def time_search(search_fn, mylist, key):
 	"""
@@ -58,8 +68,12 @@ def time_search(search_fn, mylist, key):
 	  search function on this input.
 	"""
 	### TODO
+	start_time = time.time()
+	search_fn(mylist,key)
+	end_time = time.time()
+	return (end_time - start_time) * 1000
 
-	###
+##
 
 def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
 	"""
@@ -77,9 +91,16 @@ def compare_search(sizes=[1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7]):
 	  for each method to run on each value of n
 	"""
 	### TODO
-
+	results=[] 
+	for i,v in enumerate(sizes):
+		n = int(v) 
+		mylist= list(range(n)) 
+		linear_search_time = time_search(linear_search, mylist, -1)
+		binary_search_time = time_search(binary_search, mylist, -1)
+		results.append((v, linear_search_time, binary_search_time))
 	###
-
+	return results
+	
 def print_results(results):
 	""" done """
 	print(tabulate.tabulate(results,
@@ -87,3 +108,5 @@ def print_results(results):
 							floatfmt=".3f",
 							tablefmt="github"))
 
+if __name__ == "__main__": #allows to call compare search
+	print_results(compare_search())

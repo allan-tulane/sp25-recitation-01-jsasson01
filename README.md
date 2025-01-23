@@ -1,8 +1,8 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/tqM-lrvp)
 # CMPS 2200  Recitation 01
 
-**Name (Team Member 1):**_________________________  
-**Name (Team Member 2):**_________________________
+**Name (Team Member 1):**______________Joshua Sasson_________  
+**Name (Team Member 2):**___________Aaron Gershkovich____________
 
 In this recitation, we will investigate asymptotic complexity. Additionally, we will get familiar with the various technologies we'll use for collaborative coding.
 
@@ -38,13 +38,15 @@ We'll compare the running times of `linear_search` and `binary_search` empirical
 
 - [ ] 3. Write at least two additional test cases in `test_binary_search` and confirm they pass.
 
-- [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`? 
-
+- [ ] 4. Describe the worst case input value of `key` for `linear_search`? for `binary_search`?
 **TODO: your answer goes here**
+The worst case for linear_search is if the key is not in the list or the last value in the list. This will cause the entire list to be searched resulting in a run time of n. The worst case for binary_search is if the key is not in the list. This cuases the most splits of the list resulting in a run time of log2(n).
 
 - [ ] 5. Describe the best case input value of `key` for `linear_search`? for `binary_search`? 
 
 **TODO: your answer goes here**
+Best case for linear search is when the key is the first element in the list. This causes the algorithim to only check one value. The best case for binary_search is when the key is the middle element in the list. This causes the algorithim to only check the middle element and then return. 
+
 
 - [ ] 6. Complete the `time_search` function to compute the running time of a search function. Note that this is an example of a "higher order" function, since one of its parameters is another function.
 
@@ -53,10 +55,20 @@ We'll compare the running times of `linear_search` and `binary_search` empirical
 - [ ] 8. Call `print_results(compare_search())` and paste the results here:
 
 **TODO: add your timing results here**
+|            n |   linear |   binary |
+|--------------|----------|----------|
+|       10.000 |    0.002 |    0.003 |
+|      100.000 |    0.003 |    0.002 |
+|     1000.000 |    0.041 |    0.002 |
+|    10000.000 |    0.449 |    0.003 |
+|   100000.000 |    4.227 |    0.005 |
+|  1000000.000 |   47.019 |    0.014 |
+| 10000000.000 |  475.334 |    0.018 |
 
 - [ ] 9. The theoretical worst-case running time of linear search is $O(n)$ and binary search is $O(log_2(n))$. Do these theoretical running times match your empirical results? Why or why not?
 
 **TODO: your answer goes here**
+Yes the linear search increaes linearly and the binary search increases logarithmically.
 
 - [ ] 10. Binary search assumes the input list is already sorted. Assume it takes $\Theta(n^2)$ time to sort a list of length $n$. Suppose you know ahead of time that you will search the same list $k$ times. 
   + What is worst-case complexity of searching a list of $n$ elements $k$ times using linear search? **TODO: your answer goes here**
